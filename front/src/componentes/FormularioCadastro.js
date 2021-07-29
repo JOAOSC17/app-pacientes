@@ -7,23 +7,11 @@ const FormularioCadastro = ({addEedit, idAtual, cadastrados}) => {
         email:'',
         endereco:''
     }
-    let {values, setValues} = useState(camposIniciaisDeValores);
-    useEffect(()=>{
-        if(idAtual==''){
-            setValues({
-                ...camposIniciaisDeValores
-            })
-        }else{
-            setValues({
-                ...cadastrados[idAtual]
-            })
-        }
-    },[idAtual, cadastrados])
+    const {values, setValues} = useState(camposIniciaisDeValores);
     const manipuladorInputChange = e =>{
         let { nomeCompleto, value} = e.target;
         setValues({
-            ...values,
-            [nomeCompleto]: value
+            values,
         })
     }
     const manipuladorFormEnvio = e =>{
@@ -63,7 +51,7 @@ const FormularioCadastro = ({addEedit, idAtual, cadastrados}) => {
                 <textarea className="form-control" placeholder="Endereço" name="endereco" value={values.endereco} onChange={manipuladorInputChange} />
             </div>
             <div className="form-gruop">
-                <input type="submit" value={idAtual =='' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
+                <input type="submit" value={idAtual ==='' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
             </div>
         </form>
     )

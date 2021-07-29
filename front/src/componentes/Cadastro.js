@@ -1,17 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FormularioCadastro from './FormularioCadastro'
 
 const Cadastro = () => {
     const [cadastrados, setCadastrados] = useState([]);
     const [idAtual, setIdAtual] = useState('');
+
+    
 const addEedit = obj=>{
-      if(idAtual===''){
-        //manda o post la
-      }else{
-        //pega o put ${idAtual}
-        setCadastrados({});
-      }
-    }
+  if(idAtual===''){
+    //manda o post la
+    fetch('api/all', {method: 'POST'}).then(res=>res.json()).then(response=> JSON.parse(response)).then(data=>{
+      setCadastrados(data);
+      console.log(cadastrados);
+    })
+  }else{
+    //pega o put ${idAtual}
+    //setCadastrados({});
+  //}
+}
+}
+    useEffect(()=>{
+      fetch('api/all').then(res=>res.json()).then(response=> JSON.parse(response)).then(data=>{
+        setCadastrados(data);
+        console.log(cadastrados);
+      })
+    },[])
     const deletePaciente = key =>{
       if(window.confirm('Deseja Realmente Deletar esse cadastro?')){
         //manda o delete mais o id ${key}
@@ -21,6 +34,9 @@ const addEedit = obj=>{
           //}
         //}
       }
+    }
+    if(cadastrados==null){
+      return <div>Carregando...</div>
     }
     return (
       <div>
@@ -48,21 +64,21 @@ const addEedit = obj=>{
                         </tr>
                     </thead>
                     <tbody> 
-                    {cadastrados.keys(cadastrados).map(id=>{
-                        return<tr>
-                            <td>{cadastrados[id].nomeCompleto}</td>
-                            <td>{cadastrados[id].telefone}</td>
-                            <td>{cadastrados[id].email}</td>
-                            <td>{cadastrados[id].endereco}</td>
+                    {cadastrados.map((id,index)=>{
+                        return(<tr key={id}>
+                            <td>{cadastrados[index].nomeCompleto}</td>
+                            <td>{cadastrados[index].telefone}</td>
+                            <td>{cadastrados[index].email}</td>
+                            <td>{cadastrados[index].endereco}</td>
                             <td>
-                              <a className="btn btn-primary" onClick={()=>setIdAtual(id)}>
+                              <button className="btn btn-primary" onClick={()=>setIdAtual(id)}>
                               <i className="fas fa-pencil-alt"/>
-                              </a>
-                              <a className="btn btn-danger" onClick={()=>deletePaciente(id)}>
+                              </button>
+                              <button className="btn btn-danger" onClick={()=>console.log(id)}>
                               <i className="fas fa-trash-alt"/>
-                              </a>
+                              </button>
                             </td>
-                        </tr>
+                        </tr>)
                     })}
                     </tbody>
                 </table>
@@ -72,5 +88,4 @@ const addEedit = obj=>{
     );
 }
 
-export default Cadastro
-
+export default Cadastro;
