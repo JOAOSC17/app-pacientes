@@ -6,13 +6,15 @@ const Cadastro = () => {
     const [idAtual, setIdAtual] = useState('');
 
     
-const addEedit = obj=>{
-  if(idAtual===''){
+function addEedit (obj){
+ if(idAtual===''){
     //manda o post la
-    fetch('api/all', {method: 'POST'}).then(res=>res.json()).then(response=> JSON.parse(response)).then(data=>{
-      setCadastrados(data);
-      console.log(cadastrados);
-    })
+    const options ={
+      method:"POST",
+      headers: new Headers({'content-type':'application/json'}),
+      body: JSON.stringify(obj),
+  }
+    fetch('api/new', options).then(res=>console.log(res))
   }else{
     //pega o put ${idAtual}
     //setCadastrados({});
