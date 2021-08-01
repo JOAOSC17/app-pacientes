@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-
-const FormularioCadastro = ({addEedit, idAtual, cadastrados}) => {
+import React, { useState } from 'react'
+import InputMask from "react-input-mask";
+const FormularioCadastro = ({add}) => {
     const camposIniciaisDeValores = {
         nomeCompleto:'',
         telefone:'',
@@ -17,7 +17,7 @@ const FormularioCadastro = ({addEedit, idAtual, cadastrados}) => {
      }
     function FormEnvio(e){
         e.preventDefault();
-        addEedit(values);
+        add(values);
         setValues(camposIniciaisDeValores);
         window.location.reload();
     }
@@ -38,7 +38,7 @@ const FormularioCadastro = ({addEedit, idAtual, cadastrados}) => {
                         <i className="fas fa-mobile-alt"></i>
                     </div>
                 </div>
-                <input className="form-control" placeholder="Telefone" name="telefone" onChange={manipuladorDeInput}/>
+                <InputMask className="form-control" mask="(99)9 9999-9999" placeholder="Telefone" name='telefone' value={values.telefone} onChange={manipuladorDeInput} /> 
             </div>
             <div className="form-group input-group col-md-6">
                 <div className="input-group-prepend">
@@ -50,11 +50,11 @@ const FormularioCadastro = ({addEedit, idAtual, cadastrados}) => {
             </div>
             </div>
             
-            <div className="form-gruop">
-                <textarea className="form-control" placeholder="Endereço" name="endereco" onChange={manipuladorDeInput}/>
+            <div className="form-gruop mb-3">
+                <input className="form-control" placeholder="Endereço" name="endereco" onChange={manipuladorDeInput}/>
             </div>
-            <div className="form-gruop">
-                <input type="submit" value={idAtual ==='' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
+            <div className="form-gruop mb-4">
+                <input type="submit" value='Salvar' className="btn btn-primary btn-block" />
             </div>
         </form>
     )
