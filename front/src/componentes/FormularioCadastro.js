@@ -13,7 +13,6 @@ const FormularioCadastro = ({add}) => {
         const todosValues = { ...values };
         todosValues[event.target.name] = event.target.value;
         setValues(todosValues);
-        console.log(values);
      }
     function FormEnvio(e){
         e.preventDefault();
@@ -29,7 +28,7 @@ const FormularioCadastro = ({add}) => {
                         <i className="fas fa-user"></i>
                     </div>
                 </div>
-                <input type="text" className="form-control" placeholder="Nome Completo" name="nomeCompleto" onChange={manipuladorDeInput}/>
+                <input type="text" className="form-control" placeholder="Nome Completo" name="nomeCompleto" value={values.nomeCompleto} onChange={manipuladorDeInput}/>
             </div>
             <div className="row">
             <div className="form-group input-group col-md-6">
@@ -46,12 +45,12 @@ const FormularioCadastro = ({add}) => {
                         <i className="fas fa-envelope"></i>
                     </div>
                 </div>
-                <input className="form-control" placeholder="Email" name="email" onChange={manipuladorDeInput}/>
+                <input className="form-control" placeholder="Email" name="email" value={values.email} onChange={manipuladorDeInput}/>
             </div>
             </div>
             
             <div className="form-gruop mb-3">
-                <input className="form-control" placeholder="Endereço" name="endereco" onChange={manipuladorDeInput}/>
+                <input className="form-control" placeholder="Endereço" name="endereco" value={values.endereco} onChange={manipuladorDeInput}/>
             </div>
             <div className="form-gruop mb-4">
                 <input type="submit" value='Salvar' className="btn btn-primary btn-block" />

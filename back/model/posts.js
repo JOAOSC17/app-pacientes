@@ -2,17 +2,10 @@ module.exports = {
     posts :[
         {
             id:"efhgi54fgdf",
-            nomeCompleto:"João Costa",
-            telefone:"(222)222-222",
-            email:"costav1402@gmail.com",
-            endereco:"Rua Guirareia, 389, Irajá- Rio De Janeiro"
-        },
-        {
-            id:"2",
-            nomeCompleto:"Alberto Souza",
-            telefone:"(222)222-222",
-            email:"Souza@gmail.com",
-            endereco:"Rua Guiratim, 389, Irajá- Rio De Janeiro"
+            nomeCompleto:"Aberto Rocha",
+            telefone:"(21)9 9999-9999",
+            email:"AbertoR@gmail.com",
+            endereco:"Rua Guiratim, 55, São Cristovão- Rio De Janeiro"
         },
     ],
     getAll(){
